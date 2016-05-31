@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AryanJ-NYC/url-shortener/issues"
   },
-  "homepage": "https://github.com/AryanJ-NYC/url-shortener#readme"
+  "homepage": "https://github.com/AryanJ-NYC/url-shortener#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
