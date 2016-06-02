@@ -1,7 +1,12 @@
 "use strict"
 const express = require('express'),
       app = express(),
-      portNumber = process.env.PORT || process.argv[2] || 8080;
+      mongoose = require('mongoose'),
+      portNumber = process.env.PORT || process.argv[2] || 8080,
+      mongoPort = 27017,
+      dataBasename = 'urlshortener';
+
+mongoose.connect('mongodb://localhost:' + mongoPort + '/' + dataBasename);
 
 app
 .get(/new\/(.+)/, function (req, res) {
