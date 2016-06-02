@@ -18,6 +18,7 @@
   "homepage": "https://github.com/AryanJ-NYC/url-shortener#readme",
   "dependencies": {
     "express": "^4.13.4",
-    "mongoose": "^4.4.19"
+    "mongoose": "^4.4.19",
+    "mongoose-auto-increment": "^5.0.1"
   }
 }
