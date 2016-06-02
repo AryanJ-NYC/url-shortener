@@ -18,7 +18,7 @@ urlSchema.plugin(autoIncrement.plugin, { model: 'Url', field: 'urlId', startAt: 
 let Url = db.model('Url', urlSchema);
 
 app
-.get(/new\/(.+)/, function (req, res) {
+.get(/\/new\/(.+)/, function (req, res) {
   let urlRegex = /^https?:\/\/(\w+\.)+\w+/,
       urlString = req.params[0];
   if (urlRegex.test(urlString)) {
@@ -34,8 +34,20 @@ app
     res.json({error: "Wrong url format, make sure you have a valid protocol and real site."});
   }
 })
-.get('/:id', function (req, res) {
-
+.get(/\/(\d)/, function (req, res) {
+  let id = req.params[0];
+  Url.findOne({ urlId: id }, function (err, result) {
+    if (err) {
+      console.log(err.message);
+      throw err;
+    } else {
+      if (!result) {
+        res.send("Null id");
+      } else {
+        res.redirect(result.url);
+      }
+    }
+  });
 });
 
 app.listen(portNumber, function () {
