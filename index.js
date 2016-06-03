@@ -29,7 +29,7 @@ app
     } else {
       if (result) {
         // send the result if the url passed in is matched
-        res.send({
+        res.json({
           url: result.url,
           urlId: result.urlId,
           _id: result._id
@@ -42,10 +42,10 @@ app
             if (err) {
               console.log(err.message);
             } else {
-              res.send({
-                url: result.url,
-                urlId: result.urlId,
-                _id: result._id
+              res.json({
+                url: url.url,
+                urlId: url.urlId,
+                _id: url._id
               });
             }
           });
@@ -64,7 +64,7 @@ app
       throw err;
     } else {
       if (! result) {
-        res.send("Null id");
+        res.json({ error: "This index does not match any existing URL." });
       } else {
         res.redirect(result.url);
       }
