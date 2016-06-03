@@ -29,22 +29,24 @@ app
       throw err;
     } else {
       if (result) {
+        let shortUrl = `https://${req.hostname}/${result.urlId}`;
         // send the result if the url exists in database
         res.json({
           url: result.url,
-          shortUrl: req.hostname + '/' + result.urlId
+          shortUrl: shortUrl
         });
       } else {
         // if not found in database, save url
         if (urlRegex.test(urlString)) {
           let url = new Url( {url: urlString} );
+          console.log(url);
           url.save(function (err) {
             if (err) {
               console.log(err.message);
             } else {
               res.json({
                 url: url.url,
-                shortUrl: req.hostname + '/' + url.urlId
+                shortUrl: `https://${req.hostname}/${url.urlId}`
               });
             }
           });
