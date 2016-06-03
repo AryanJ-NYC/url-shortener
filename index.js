@@ -70,6 +70,14 @@ app
       }
     }
   });
+})
+.get('*', function (req, res) {
+  res.status(400);
+  let html = `<h1>URL Shortener</h1>`;
+  html += `<h2>Create a new shortened URL</h2>`;
+  html += `<p>Go to <code>http://${req.hostname}/new/[url]</code>`;
+  html += `</br>where [url] is the url you'd like to shorten.</p>`;
+  res.send(html);
 });
 
 app.listen(portNumber, function () {
