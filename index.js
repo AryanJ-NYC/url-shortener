@@ -79,7 +79,7 @@ app
   html += `<p>Go to <code>http://${req.hostname}/new/[url]</code>`;
   html += `</br>where [url] is the url you'd like to shorten, in the following format:`;
   html += `</br><code>http://www.example.com</code></p>`;
-  html += `<p><code>http://</code> MUST be included.</p>`;
+  html += `<p><code>http://</code> or <code>https://</code> MUST be included.</p>`;
   res.send(html);
 });
 
