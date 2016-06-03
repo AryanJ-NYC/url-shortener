@@ -56,7 +56,7 @@ app
     }
   });
 })
-.get(/\/(\d)/, function (req, res) {
+.get(/\/(\d+)/, function (req, res) {
   let id = req.params[0];
   Url.findOne({ urlId: id }, function (err, result) {
     if (err) {
