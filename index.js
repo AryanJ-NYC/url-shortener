@@ -28,11 +28,10 @@ app
       throw err;
     } else {
       if (result) {
-        // send the result if the url passed in is matched
+        // send the result if the url exists in database
         res.json({
           url: result.url,
-          urlId: result.urlId,
-          _id: result._id
+          shortUrl: req.hostname + '/' + result.urlId
         });
       } else {
         // if not found in database, save url
@@ -44,8 +43,7 @@ app
             } else {
               res.json({
                 url: url.url,
-                urlId: url.urlId,
-                _id: url._id
+                shortUrl: req.hostname + '/' + url.urlId
               });
             }
           });
