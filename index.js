@@ -6,9 +6,11 @@ const express = require('express'),
       portNumber = process.env.PORT || process.argv[2] || 8080,
       mongoPort = 27017,
       dataBasename = 'urlshortener',
-      autoIncrement = require('mongoose-auto-increment');
+      autoIncrement = require('mongoose-auto-increment'),
+      mongoUrl = process.env.MONGODB_URI + '/' + dataBasename ||
+          ('mongodb://localhost:' + mongoPort + '/' + dataBasename);
 
-let db = mongoose.createConnection('mongodb://localhost:' + mongoPort + '/' + dataBasename);
+let db = mongoose.createConnection(mongoUrl);
 autoIncrement.initialize(db);
 
 let urlSchema = new Schema({
