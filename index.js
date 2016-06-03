@@ -48,7 +48,7 @@ app
             }
           });
         } else {
-          res.json({error: "Wrong url format, make sure you have a valid protocol and real site."});
+          res.json({error: "Wrong url format. Please use http://example.com format."});
         }
       }
     }
@@ -74,7 +74,9 @@ app
   let html = `<h1>URL Shortener</h1>`;
   html += `<h2>Create a new shortened URL</h2>`;
   html += `<p>Go to <code>http://${req.hostname}/new/[url]</code>`;
-  html += `</br>where [url] is the url you'd like to shorten.</p>`;
+  html += `</br>where [url] is the url you'd like to shorten, in the following format:`;
+  html += `</br><code>http://www.example.com</code></p>`;
+  html += `<p><code>http://</code> MUST be included.</p>`;
   res.send(html);
 });
 
