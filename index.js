@@ -5,10 +5,9 @@ const express = require('express'),
       Schema = mongoose.Schema,
       portNumber = process.env.PORT || process.argv[2] || 8080,
       mongoPort = 27017,
-      dataBasename = 'urlshortener',
       autoIncrement = require('mongoose-auto-increment'),
-      mongoUrl = process.env.MONGODB_URI + '/' + dataBasename ||
-          ('mongodb://localhost:' + mongoPort + '/' + dataBasename);
+      mongoUrl = process.env.MONGODB_URI ||
+          ('mongodb://localhost:' + mongoPort);
 
 let db = mongoose.createConnection(mongoUrl);
 autoIncrement.initialize(db);
