@@ -1,3 +1,4 @@
+"use strict"
 const express = require('express'),
       routes = express.Router(),
       mongoose = require('mongoose'),
@@ -23,7 +24,6 @@ routes
         // if not found in database, save url
         if (urlRegex.test(urlString)) {
           let url = new Url( {url: urlString} );
-          console.log(url);
           url.save(function (err) {
             if (err) {
               console.log(err.message);

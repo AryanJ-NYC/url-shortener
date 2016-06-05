@@ -1,6 +1,7 @@
+"use strict"
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema,
-      db = require('./database')
+      db = require('./database'),
       autoIncrement = require('mongoose-auto-increment');
 
 autoIncrement.initialize(db);
