@@ -13,7 +13,7 @@ routes
       throw err;
     } else {
       if (result) {
-        let shortUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+        let shortUrl = req.protocol + '://' + req.get('host') + '/' + result.urlId
         // send the result if the url exists in database
         res.json({
           url: result.url,
@@ -30,7 +30,7 @@ routes
             } else {
               res.json({
                 url: url.url,
-                shortUrl: `https://${req.hostname}/${url.urlId}`
+                shortUrl: req.protocol + '://' + req.get('host') + '/' + url.urlId
               });
             }
           });
