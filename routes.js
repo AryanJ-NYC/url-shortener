@@ -43,7 +43,8 @@ routes
   let id = req.params[0];
   Url.findOne({ urlId: id }, function (err, result) {
     if (err) {
-      res.json({ error: "Error searching for URL ID in database." })
+      console.error(err.message);
+      res.json({ error: "Error searching for URL ID in database." });
     } else {
       if (! result) {
         res.json({ error: "This index does not match any existing URL." });
