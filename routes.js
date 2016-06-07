@@ -8,7 +8,7 @@ routes
   Url.findOne({ url: urlString }, function (err, result) {
     if (err) {
       console.error(err.message);
-      throw err;
+      res.json({ error: "Error searching for URL in database." })
     } else {
       if (result) {
       // if result in database, lookup and respond with shortUrl
@@ -24,6 +24,7 @@ routes
         url.save(function (err) {
           if (err) {
             console.error(err.message);
+            res.json({ error: "Error saving URL to database." });
           } else {
             res.json({
               url: url.url,
@@ -34,6 +35,9 @@ routes
       }
     }
   });
+})
+.get(/\/new\/.*/, function (req, res) {
+  res.json({ error: "URL is not valid or does not begin with http:// or https://" });
 })
 .get(/\/(\d+)/, function (req, res) {
   let id = req.params[0];
