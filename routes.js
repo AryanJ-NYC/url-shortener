@@ -1,42 +1,36 @@
-"use strict"
-const express = require('express'),
-      routes = express.Router(),
-      mongoose = require('mongoose'),
+"use strict";
+const routes = require('express').Router(),
       Url = require('./Url');
 
 routes
-.get(/\/new\/(.+)/, function (req, res) {
-  let urlRegex = /^https?:\/\/(\w+\.)+\w+/,
-      urlString = req.params[0];
+.get(/\/new\/(https?:\/\/(\w+\.)+\w+)/, function (req, res) {
+  let urlString = req.params[0];
   Url.findOne({ url: urlString }, function (err, result) {
     if (err) {
-      console.log(err.message);
+      console.error(err.message);
       throw err;
     } else {
       if (result) {
-        let shortUrl = req.protocol + '://' + req.get('host') + '/' + result.urlId
+      // if result in database, lookup and respond with shortUrl
+        let shortUrl = req.protocol + '://' + req.get('host') + '/' + result.urlId;
         // send the result if the url exists in database
         res.json({
           url: result.url,
           shortUrl: shortUrl
         });
       } else {
-        // if not found in database, save url
-        if (urlRegex.test(urlString)) {
-          let url = new Url( {url: urlString} );
-          url.save(function (err) {
-            if (err) {
-              console.log(err.message);
-            } else {
-              res.json({
-                url: url.url,
-                shortUrl: req.protocol + '://' + req.get('host') + '/' + url.urlId
-              });
-            }
-          });
-        } else {
-          res.json({error: "Wrong url format. Please use http://example.com format."});
-        }
+      // if not found in database, save url
+        let url = new Url({ url: urlString });
+        url.save(function (err) {
+          if (err) {
+            console.error(err.message);
+          } else {
+            res.json({
+              url: url.url,
+              shortUrl: req.protocol + '://' + req.get('host') + '/' + url.urlId
+            });
+          }
+        });
       }
     }
   });
@@ -45,7 +39,7 @@ routes
   let id = req.params[0];
   Url.findOne({ urlId: id }, function (err, result) {
     if (err) {
-      console.log(err.message);
+      console.error(err.message);
       throw err;
     } else {
       if (! result) {
