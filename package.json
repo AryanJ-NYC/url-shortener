@@ -1,7 +1,7 @@
 {
   "name": "url-shortener",
   "version": "1.0.0",
-  "description": "A url-shortener API created with Node.js and its express framework and MongoDB.",
+  "description": "A url-shortener API created with MongoDB, Node.js and the Express framework.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
