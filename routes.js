@@ -56,12 +56,12 @@ routes
 })
 .get('*', function (req, res) {
   res.status(400);
-  let html = `<h1>URL Shortener</h1>`;
-  html += `<h2>Create a new shortened URL</h2>`;
-  html += `<p>Go to <code>http://${req.hostname}/new/[url]</code>`;
-  html += `</br>where [url] is the url you'd like to shorten, in the following format:`;
-  html += `</br><code>http://www.example.com</code></p>`;
-  html += `<p><code>http://</code> or <code>https://</code> MUST be included.</p>`;
+  let html =
+  `<h1>URL Shortener</h1>
+  <h2>Create a new shortened URL</h2>
+  <p>Go to <code>http://${req.hostname}/new/http://www.example.com</code>
+  </br>where www.example.com is any url you'd like to shorten.
+  <p><code>http://</code> or <code>https://</code> MUST be included.</p>`;
   res.send(html);
 });
 
